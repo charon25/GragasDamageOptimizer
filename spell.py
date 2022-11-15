@@ -11,6 +11,10 @@ class Spell:
 
         true_damages = self.base_damages[level] + stats['ap'] * self.ratios['ap'] + stats['enn_hp'] * self.ratios['hp']
         reduction = 100 / (100 + stats['enn_mr'] * (1 - stats['mpen_perc']) - stats['mpen'])
+        if reduction < 0:
+            reduction = 0
+        if reduction > 1:
+            reduction = 1
         return true_damages * reduction * (1 + stats['bonus'])
 
     def compute_dps(self, level: int, stats: dict[str, int]) -> float:
