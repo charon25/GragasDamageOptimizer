@@ -1,4 +1,4 @@
-from itertools import product, combinations
+from itertools import chain, combinations, product
 import distutils.util
 import re
 
@@ -70,10 +70,12 @@ def get_parameters() -> dict[str, int]:
 
 def get_builds(items: str):
     legendaries_count = int(items[-1])
+    legendaries = chain.from_iterable((combinations(LEGENDARIES, r=count) for count in range(1, legendaries_count + 1)))
+
     if 'm' in items:
-        return product(MYTHICS, combinations(LEGENDARIES, r=legendaries_count))
+        return product(MYTHICS, legendaries)
     else:
-        return combinations(LEGENDARIES, r=legendaries_count)
+        return legendaries
 
 # In place
 def add_stats(stats1: dict[str, int], stats2: dict[str, int], multiplier: float = 1.0) -> dict[str, int]:
