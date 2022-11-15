@@ -9,12 +9,15 @@ class Item():
         self.cost: int = cost
         self.spell: Spell = spell
 
+    def __repr__(self) -> str:
+        return self.name
+
 class MythicItem(Item):
     def __init__(self, id: int, name: str, stats: dict[str, float], cost: int, spell: Spell, stats_per_items: dict[str, float]) -> None:
         super().__init__(id, name, stats, cost, spell)
         self.stats_per_items: dict[str, float] = stats_per_items
 
-MYTHICS = (
+MYTHICS: tuple[MythicItem] = (
     MythicItem(0, 'Hextech Rocketbelt', {'ap': 90, 'haste': 15, 'hp': 250, 'mpen': 6}, 3200, Spell([125], {'ap': 0.15, 'hp': 0}, [40], True), {'mpen': 5}),
     MythicItem(1, "Liandry's Anguish", {'ap': 80, 'haste': 20, 'mana': 600}, 3200, Spell([50], {'ap': 0.06, 'hp': 0.04}, [4], True), {'haste': 5}), # Effet en +
     MythicItem(2, "Luden's Tempest", {'ap': 80, 'haste': 20, 'mana': 600, 'mpen': 6}, 3200, Spell([100], {'ap': 0.1, 'hp': 0}, [10], True), {'mpen': 5}),
@@ -25,7 +28,7 @@ MYTHICS = (
     MythicItem(6, 'Imperial Mandate', {'ap': 40, 'haste': 20, 'hp': 200}, 2500, None, {'ap': 15})
 )
 
-LEGENDARIES = {
+LEGENDARIES: tuple[Item] = {
     Item(7, "Rabadon's Deathcap", {'ap': 120}, 3600, None), # Effet en +
     Item(8, 'Cosmic Drive', {'ap': 65, 'haste': 30, 'hp': 200}, 3000, None), # Effet en +
     Item(9, 'Demonic Embrace', {'ap': 75, 'hp': 350}, 3000, Spell([0], {'ap': 0, 'hp': 0.072}, [4], True)), # Effet en +
