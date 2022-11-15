@@ -1,14 +1,24 @@
 class Spell:
-    def __init__(self, base_damages: list[int], ratios: dict[str, float], cooldowns: list[float]) -> None:
-        self.base_damages: list[int] = list()
-        self.ratios: dict[str, float] = {'ap': 0, 'hp': 0}
-        self.cooldowns: list[float] = list()
+    def __init__(self, base_damages: list[int], ratios: dict[str, float], cooldowns: list[float], is_from_item: bool = False) -> None:
+        self.base_damages: list[int] = base_damages
+        self.ratios: dict[str, float] = ratios
+        self.cooldowns: list[float] = cooldowns
+        self.is_from_item = is_from_item
 
     def compute_damage(self, level: int, stats: dict[str, int]) -> float:
-        true_damages = self.base_damages[level] + stats['ap'] * self.ratios['ap'] + stats['hp'] * self.ratios['hp']
-        reduction = 100 / (100 + stats['mr'] - stats['mpen'])
-        return true_damages * reduction
+        if self.is_from_item:
+            level = 0
+
+        true_damages = self.base_damages[level] + stats['ap'] * self.ratios['ap'] + stats['enn_hp'] * self.ratios['hp']
+        reduction = 100 / (100 + stats['enn_mr'] * (1 - stats['mpen_perc']) - stats['mpen'])
+        return true_damages * reduction * (1 + stats['bonus'])
 
     def compute_dps(self, level: int, stats: dict[str, int]) -> float:
-        cooldown = self.cooldowns[level] * (100 / (100 + stats['haste']))
+        if self.is_from_item:
+            level = 0
+
+        cooldown = self.cooldowns[level]
+        if not self.is_from_item:
+            cooldown *= (100 / (100 + stats['haste']))
+
         return self.compute_damage(level, stats) / cooldown

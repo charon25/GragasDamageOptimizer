@@ -27,6 +27,7 @@ def get_parameters() -> dict[str, int]:
     starting_haste = get_positive_int_input("Base haste ({}) ? ", 0)
     has_sorcs = bool(get_positive_int_input("Sorcerer's Shoes ? ", 0))
     is_q_charged = bool(get_positive_int_input("With charged Q ? ", 0))
+    # level, golds, quels items
 
     return {'hp': enemy_health, 'mr': enemy_magic_resistance, 'ap': starting_ap, 'mpen': starting_magic_penetration, 'haste': starting_haste, 'sorc': has_sorcs, 'q_charged': is_q_charged}
 
