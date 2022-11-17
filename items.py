@@ -25,7 +25,8 @@ MYTHICS: tuple[MythicItem] = (
     MythicItem(4, 'Riftmaker', {'ap': 70, 'haste': 15, 'hp': 300, 'bonus': 0.06}, 3200, None, {'ap': 8}),
     MythicItem(5, 'Crown of the Shattered Queen', {'ap': 70, 'haste': 20, 'hp': 250, 'mana': 600}, 2800, None, {'ap': 8}), # Effet en +
     MythicItem(55, 'Everfrost', {'ap': 70, 'haste': 20, 'hp': 250, 'mana': 600}, 2800, Spell([100], {'ap': 0.3, 'hp': 0}, [30], True), {'ap': 10}),
-    MythicItem(6, 'Imperial Mandate', {'ap': 40, 'haste': 20, 'hp': 200}, 2500, None, {'ap': 15})
+    MythicItem(6, 'Imperial Mandate', {'ap': 40, 'haste': 20, 'hp': 200}, 2500, None, {'ap': 15}),
+    MythicItem(65, 'Rod of Ages', {'ap': 100, 'hp': 500, 'mana': 600}, 3200, None, {'haste': 5})
 )
 
 LEGENDARIES: tuple[Item] = {

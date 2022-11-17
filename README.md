@@ -1,6 +1,6 @@
 # Gragas damage optimizer
 
-This program finds the best build to maximize Gragas damages in League of Legends. It prompts the user for multiple parameters to customize the output as much as possible. It was done with Python 3.11 and on LoL patch `12.21`. It will only search in mythic and legendary AP items from this patch, to save on computing time. 
+This program finds the best build to maximize Gragas damages in League of Legends. It prompts the user for multiple parameters to customize the output as much as possible. It was done with Python 3.11 and on LoL patch `12.22`. It will only search in mythic and legendary AP items from this patch, to save on computing time. 
 
 ## Usage
 
